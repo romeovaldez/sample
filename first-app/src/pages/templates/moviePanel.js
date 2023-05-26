@@ -26,7 +26,7 @@ class MoviePanel extends Component {
             <div>
                 { this.state.viewClicked && ( <Navigate to={"./" + movieTitle} state={this.state} />) }
                 <h4>{this.props.movieTitle}</h4>
-                <h5>{this.props.rating}</h5>
+                <h5>{this.props.rating}/10</h5>
                 <button onClick={this.viewMoviePage}>View</button>
             </div>
         );
