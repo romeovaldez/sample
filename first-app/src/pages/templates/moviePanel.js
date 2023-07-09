@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
+import { Grid, Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material';
 
 class MoviePanel extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class MoviePanel extends Component {
         this.state = {
             movieTitle: props.movieTitle,
             rating: props.rating,
+            imageSrc: props.imageSrc,
             viewClicked: false
         }
     }
@@ -23,12 +25,24 @@ class MoviePanel extends Component {
         let movieTitle = this.props.movieTitle;
         movieTitle = movieTitle.replaceAll(" ", "");
         return (
-            <div>
+            <Grid item lg={4}>
+                <Card sx={{border: '5px solid white'}}>
+                    <CardMedia
+                        sx={{height: 400, backgroundSize: 'cover', backgroundPosition: 'top'}}
+                        image={this.props.imageSrc}
+                    />
+                    <CardContent sx={{paddingBottom: 0, textAlign: 'center', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflowX: 'hidden'}}>
+                        <Typography sx={{fontSize: 18}} gutterBottom>
+                            {this.props.movieTitle}
+                        </Typography>
+                    </CardContent>
+                    <CardActions sx={{paddingTop: 0, justifyContent: 'center'}}>
+                        <Button onClick={this.viewMoviePage}>View</Button>
+                    </CardActions>
+                </Card>
+                
                 { this.state.viewClicked && ( <Navigate to={"./" + movieTitle} state={this.state} />) }
-                <h4>{this.props.movieTitle}</h4>
-                <h5>{this.props.rating}/10</h5>
-                <button onClick={this.viewMoviePage}>View</button>
-            </div>
+            </Grid>
         );
     }
 }

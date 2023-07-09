@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import MoviePanel from './templates/moviePanel';
 import { ratings, moviesList, initialState, movieReducer } from '../reducers/movieReducer';
+import { Grid } from '@mui/material';
 
 
 function Movies() {
@@ -31,6 +32,7 @@ function Movies() {
 
             <button id="SORT_BY_TITLE" onClick={ filterOrSort }>Sort by title</button>
 
+            <Grid container spacing={15} sx={{padding: 10}}>
             {
                 moviesList
                 .filter(e => state.removeFilter ? e : e.rating === state.filterRating)
@@ -42,9 +44,10 @@ function Movies() {
                     else return b.title.localeCompare(a.title)
                 })
                 .map(e => 
-                    <MoviePanel movieTitle={e.title} rating={e.rating} />
+                    <MoviePanel movieTitle={e.title} rating={e.rating} imageSrc={e.src} />
                 )
             }
+            </Grid>
         </div>
     );
 }
