@@ -25,7 +25,7 @@ class MoviePanel extends Component {
         let movieTitle = this.props.movieTitle;
         movieTitle = movieTitle.replaceAll(" ", "");
         return (
-            <Grid item lg={4}>
+            <Grid item lg={4} sx={{display: 'inline-block'}}>
                 <Card sx={{border: '5px solid white'}}>
                     <CardMedia
                         sx={{height: 400, backgroundSize: 'cover', backgroundPosition: 'top'}}
